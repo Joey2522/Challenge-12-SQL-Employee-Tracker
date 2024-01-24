@@ -1,8 +1,6 @@
-console.log('hello world');
 const inquirer = require('inquirer');
 const express = require('express');
 const mysql = require('mysql2');
-// const { Connection } = require('mysql2/typings/mysql/lib/Connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -42,14 +40,57 @@ function questions() {
         })
         .then((answer) => {
             switch (answer.action) {
-                case"View all departments":
-                viewAllDepartments();
-                break;
+                case "View all departments.":
+                    viewAllDepartments();
+                    break;
+                case "View all roles.":
+                    viewAllRoles();
+                    break;
+                case "View all employees.":
+                    viewAllEmployees();
+                    break;
+                case "Add a department.":
+                    addDepartment();
+                    break;
+                case "Add a role.":
+                    addRole();
+                    break;
+                case "Add an employee.":
+                    addEmployee();
+                    break;
+                case "Update and employee role.":
+                    updateEmployeeRole();
+                    break;
+                case "Exit":
+                    connection.end();
+                    console.log('Goodbye!')
+                    break;
             }
         })
     };
 
+    function viewAllDepartments() {
+        const query = "SELECT * FROM department";
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            console.table(res);
+            questions();
+        })
+    };
+
+    function viewAllRoles() {
+        const query = "SELECT title FROM roles";
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            console.table(res);
+            // questions();
+        })
+    };
+
+    
+
     questions();
+
 
 app.listen(PORT, () => {
 console.log(`Server runnning on http://localhost:${PORT}`);
