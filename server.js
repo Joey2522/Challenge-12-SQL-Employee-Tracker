@@ -18,18 +18,19 @@ const connection = mysql.createConnection ({
 connection.connect((err) => {
     if (err) throw err;
     console.log("Connected to the employeeTracker_db database!");
+    questions();
 });
 
 function questions() {
     inquirer
         .prompt ({
             type: 'list',
-            name: 'question1',
+            name: 'selection',
             message: 'What would you like to do?',
             choices: [
                 "View all departments.",
                 "View all roles.",
-                "View all emplyees.",
+                "View all employees.",
                 "Add a department.",
                 "Add a role.",
                 "Add an employee.",
@@ -39,7 +40,7 @@ function questions() {
 
         })
         .then((answer) => {
-            switch (answer.action) {
+            switch (answer.selection) {
                 case "View all departments.":
                     viewAllDepartments();
                     break;
@@ -67,7 +68,7 @@ function questions() {
                     break;
             }
         })
-    };
+    }
 
     function viewAllDepartments() {
         const query = "SELECT * FROM department";
@@ -83,13 +84,21 @@ function questions() {
         connection.query(query, (err, res) => {
             if (err) throw err;
             console.table(res);
-            // questions();
+            questions();
         })
     };
 
+    function viewAllEmployees() {
+        const query = "SELECT * FROM employee";
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            console.table(res);
+            questions();
+        })
+    };
     
 
-    questions();
+    // questions();
 
 
 app.listen(PORT, () => {

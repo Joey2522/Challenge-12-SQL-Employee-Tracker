@@ -1,4 +1,4 @@
-INSERT INTO departments (department_name)
+INSERT INTO department (department_name)
 VALUES 
 ('Executive Board'),
 ('Marketing'),
@@ -20,7 +20,7 @@ VALUES
 ('Senior Engineer', 185000.00, 5),
 ('IT Manager', 125000.00, 6),
 ('Customer Relations Manager', 75000.00, 7),
-('Research and Development Manager ', 185000.00, 8),
+('Research & Development Manager', 185000.00, 8),
 ('Legal Manager', 95000.00, 9),
 ('Maintenance Manager', 135000.00, 10);
 
