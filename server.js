@@ -145,16 +145,16 @@ function questions() {
                 {
                 type: 'list',
                 name: 'department',
-                message: 'Select the department for the new role:',
+                message: 'Select the department ID for the new role:',
                 choices: res.map(
                     (department) => department.id
                 ),
                 },
             ])
             .then((answers) => {
-                const department = res.find(
-                    (department) => department.name === answers.department
-                );
+                // const department = res.find(
+                //     (department) => department.name === answers.department
+                // );
                 const query = 'INSERT INTO roles SET ?';
                 connection.query(
                     query,
@@ -166,7 +166,7 @@ function questions() {
                     (err, res) => {
                     if (err) throw err;
                     console.log(
-                        `The new role ${answers.new_role} was added to the database with a salary of ${answers.new_salary} to department # ${answers.department}!`
+                        `The role ${answers.new_role} was added to the database with a salary of ${answers.new_salary} to department ID ${answers.department}!`
                         );
                         questions();
                         }
