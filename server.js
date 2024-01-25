@@ -166,7 +166,7 @@ function questions() {
                     (err, res) => {
                     if (err) throw err;
                     console.log(
-                        `Added new role ${answers.new_role} with salary ${answers.new_salary} to the ${answers.department} department in the database!`
+                        `The new role ${answers.new_role} was added to the database with a salary of ${answers.new_salary} to department # ${answers.department}!`
                         );
                         questions();
                         }
