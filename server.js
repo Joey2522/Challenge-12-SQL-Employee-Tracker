@@ -126,6 +126,7 @@ function questions() {
         const query = 'SELECT * FROM department';
         connection.query(query, (err, res) => {
             if (err) throw err;
+            console.table(res);
 
         inquirer
             .prompt([
@@ -146,7 +147,7 @@ function questions() {
                 name: 'department',
                 message: 'Select the department for the new role:',
                 choices: res.map(
-                    (department) => department.department_name
+                    (department) => department.id
                 ),
                 },
             ])
@@ -160,7 +161,7 @@ function questions() {
                     {
                     title: answers.new_role,
                     salary: answers.new_salary,
-                    department_id: department,
+                    department_id: answers.department,
                     },
                     (err, res) => {
                     if (err) throw err;
