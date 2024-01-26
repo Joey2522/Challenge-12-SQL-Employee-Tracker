@@ -152,9 +152,6 @@ function questions() {
                 },
             ])
             .then((answers) => {
-                // const department = res.find(
-                //     (department) => department.name === answers.department
-                // );
                 const query = 'INSERT INTO roles SET ?';
                 connection.query(
                     query,
@@ -175,7 +172,64 @@ function questions() {
         });
     }
     
+    function addEmployee() {
+        const query = 'SELECT * FROM employee';
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            console.table(res);
 
+        inquirer
+            .prompt([
+                {
+                type: 'input',
+                name: 'first_name',
+                message: "Enter the new employee's first name:",
+                default: 'Can be no more than 30 characters.',
+                },
+                {
+                type: 'input',
+                name: 'last_name',
+                message: "Enter the new employee's last name:",
+                default: 'Can be no more than 30 characters.',
+                },
+                {
+                type: 'list',
+                name: 'role',
+                message: 'Select the role for the new employee:',
+                choices: res.map(
+                    (employee) => employee.role_id
+                ),
+                },
+                {
+                type: 'list',
+                name: 'manager',
+                message: 'Select the manager for the new employee:',
+                choices: res.map(
+                    (employee) => employee.id
+                ),
+                },
+            ])
+            .then((answers) => {
+                const query = 'INSERT INTO employee SET ?';
+                connection.query(
+                    query,
+                    {
+                    first_name: answers.first_name,
+                    last_name: answers.last_name,
+                    role_id: answers.role,
+                    manager_id: answers.manager,
+                    },
+                    (err, res) => {
+                    if (err) throw err;
+                    console.log(
+                        `${answers.first_name} ${answers.last_name} was added to the database with a role of ${answers.role}!`
+                        );
+                        questions();
+                        }
+                    );
+                });
+        });
+    }
 
 app.listen(PORT, () => {
 console.log(`Server runnning on http://localhost:${PORT}`);
