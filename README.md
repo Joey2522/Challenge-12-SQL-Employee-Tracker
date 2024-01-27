@@ -73,7 +73,7 @@ Build a command-line application from scratch to manage a company's employee dat
 [Repository URL Link:](https://github.com/Joey2522/Challenge-12-SQL-Employee-Tracker)
 
 ## YouTube Walkthrough Video:
-[Click Here to Watch](link here)
+[Click Here to Watch](https://youtu.be/yiZEIMX5REE)
 
 ## Screenshots:
 ### Figure 1. Command line application
