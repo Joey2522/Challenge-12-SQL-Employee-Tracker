@@ -77,11 +77,11 @@ Build a command-line application from scratch to manage a company's employee dat
 
 ## Screenshots:
 ### Figure 1. Command line application
-![](link needed) 
+![](./assets/Screenshot%202024-01-27%20at%208.18.31 AM.png) 
 ### Figure 2. Command line application
-![](link needed)
+![](./assets/Screenshot%202024-01-27%20at%208.19.02 AM.png)
 ### Figure 3. Command line application
-![](link needed)
+![](./assets/Screenshot%202024-01-27%20at%208.19.20 AM.png)
 
 
 ## Built With
